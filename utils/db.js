@@ -5,7 +5,7 @@ const pool = new Pool({
     connectionString: process.env.DB_URL
 });
 
-// Function to create the users table
+
 const createUsersTable = async () => {
     try {
         console.log('Attempting to create users table...');
@@ -32,7 +32,7 @@ const createUsersTable = async () => {
         await createUsersTable();
     } catch (err) {
         console.error('Database initialization failed:', err);
-        process.exit(1); // Exit process if initialization fails
+        process.exit(1); 
     }
 })();
 
