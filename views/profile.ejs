@@ -1,0 +1,80 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Profile</h1>
+        <p><strong>ID:</strong> <%= user.id %></p>
+        <p><strong>Username:</strong> <%= user.username %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Created At:</strong> <%= user.created_at %></p>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .warning-popup {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ffcc00;
+            color: black;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .warning-popup button {
+            margin-left: 10px;
+            background: #007bff;
+            border: none;
+            padding: 5px 10px;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .warning-popup button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profile</h1>
+        <p><strong>ID:</strong> <%= user.id %></p>
+        <p><strong>Username:</strong> <%= user.username %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Created At:</strong> <%= user.created_at %></p>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+    <div id="expiryWarning" class="warning-popup">
+        Your session will expire in 30 seconds. 
+        <button onclick="window.location.href='/login'">Re-login</button>
+        <button onclick="document.getElementById('expiryWarning').style.display='none'">Dismiss</button>
+    </div>
+    <script>
+        // JWT expires in 15 minutes (900 seconds)
+        const expiryTime = 900 * 1000; // 900 seconds in milliseconds
+        const warningTime = expiryTime - 30 * 1000; // Show warning 30 seconds before expiry
+
+        setTimeout(() => {
+            document.getElementById('expiryWarning').style.display = 'block';
+        }, warningTime);
+    </script>
+</body>
+</html>
